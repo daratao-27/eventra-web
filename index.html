@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eventra — Find your next event</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#/events" class="brand">Eventra<span class="brand-dot">.</span></a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#/events" data-route="events">Events</a>
+      <a href="#/bookings" data-route="bookings" class="auth-only attendee-only">My tickets</a>
+      <a href="#/my-events" data-route="my-events" class="organizer-only">My events</a>
+      <a href="#/dashboard" data-route="dashboard" class="organizer-only">Dashboard</a>
+      <a href="#/profile" data-route="profile" class="auth-only">Profile</a>
+    </nav>
+    <div class="topbar-actions" id="topbarActions">
+      <a href="#/login" class="btn btn-ghost guest-only">Log in</a>
+      <a href="#/register" class="btn btn-primary guest-only">Sign up</a>
+      <span class="user-chip auth-only" id="userChip"></span>
+      <button class="btn btn-ghost auth-only" id="logoutBtn">Log out</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main id="app" class="app"></main>
+
+<div id="toastHost" class="toast-host"></div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Eventra — a cloud event booking platform</span>
+    <span class="footer-ticket-note">TICKET NO. IT/PROJ/2026 · ADMIT ONE</span>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
