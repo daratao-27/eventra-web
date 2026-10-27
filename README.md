@@ -2,8 +2,6 @@
 
 Eventra is a full-stack event booking platform built on AWS, developed as a three-part project: microservices architecture and database design (Part 1), a serverless microservices backend (Part 2) and a static frontend web application (Part 3). It supports event discovery, ticket booking, reviews, and organiser analytics, with authentication handled entirely through Amazon Cognito.
 
-**Live app:** `https://main.d2g0bby2kt6mwa.amplifyapp.com/` *(https://main.d2g0bby2kt6mwa.amplifyapp.com/)*
-
 ---
 
 ## Overview
@@ -118,16 +116,6 @@ All endpoints are served from a single API Gateway REST API (`prod` stage).
 | BookingService | DELETE | `/api/bookings/{id}` | Cancel a booking |
 | ReviewService | POST/PUT/DELETE | `/api/reviews/{id}` | Create, update, delete a review |
 | ReviewService | GET | `/api/reviews/event/{eventId}` | Reviews for an event |
-
----
-
-## Known limitations
-These are the trade-offs made for project scope:
-
-- **Booking capacity check isn't fully atomic.** It's a check-then-insert pattern, so under true concurrent load two requests could theoretically both pass the check before either inserts. A production fix would use a row-level lock (`SELECT ... FOR UPDATE`) inside a transaction.
-- **Review role enforcement is client-side only.** `BookingService` verifies server-side that organisers can't book tickets, but `ReviewService` currently has no database connection to perform the equivalent check for reviews — it's enforced only in the UI.
-- **JWTs aren't verified server-side.** Lambdas trust the `user_id` sent in the request body/payload rather than decoding and validating the Cognito JWT on every protected call.
-- **No automated tests.** All testing was manual, via Postman and the live UI.
 
 ---
 
